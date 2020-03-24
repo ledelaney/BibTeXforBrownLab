@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+
+\usepackage[bibnewpage, natbibapa]{apacite} 
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage{blindtext}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\large\bfseries\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\bfseries}{}{1em}{}
+\setcounter{secnumdepth}{0}
+
+\pagestyle{fancy}
+\fancyhead[L,C]{}
+\fancyhead[R]{\textit{Writing and Referencing with \LaTeX and Bib\TeX}}
+\fancyfoot[L]{\textsc{L. E. Delaney }}
+    \fancyfoot[R]{\thepage}
+\fancyfoot[C]{}
+
+
+\begin{document}
+
+\section{Requirements.}
+
+First and foremost, you'll need to download a \LaTeX \ editor. There are many out there, but I use \TeX Shop, which you can \href{https://pages.uoregon.edu/koch/texshop/obtaining.html}{download here}.\\
+
+You'll also need some kind of reference manager software. This tutorial is written for Zotero, but I know there are many others that accomplish the same goal. Zotero can be \href{https://www.zotero.org/download/}{downloaded here}.\\
+
+Once you've downloaded Zotero, you'll need the Better Bib\TeX\ (BBT) extension added like so:
+\begin{enumerate}
+\item{Download the .xpi file \href{https://github.com/retorquere/zotero-better-bibtex/releases/tag/v5.2.20}{found here}}
+\item{In Zotero, navigate to Tools $\rightarrow$ Add-ons}
+\item{Select ``Extensions"}
+\item{Click the gear in the top-right corner and select ``Install Add-on from File"}
+\item{Choose the .xpi file downloaded above and click ``Install"}
+\item{Restart Zotero}
+\end{enumerate}
+
+By navigating to ``Preferences" in the main Zotero menu, you can customize some aspects of BBT. I recommend changing your citation key (more on these later) for brevity's sake.  The default is the author first name, the first three words of the reference, and the year: cumbersome!\\
+
+\section{Gathering references.}
+
+There are many ways of getting references into Zotero. There is an add-on for Chrome which allows you to save references as you work in your browser. Let's say that you're like me, and you have hundreds of PDFs on your computer that need to be entered, last year. One option is to drag-and-drop the PDFs into Zotero directly. I haven't had great luck with this, but maybe you will.
+
+The second option is manual entry. This is the procedure I use:
+\begin{enumerate}
+\item{Find the references you need on Google Scholar.}
+\item{Click the ``star" in the bottom lefthand corner of the entry to add it to your library. (This is important, because Google will only let you download so many citations until it locks you out --- however, you can bypass this by adding the references to your library.)}
+\item{Once your sources are collected in your library, check the boxes of the ones you want to export and click ``Export". Choose the option for Bib\TeX.}
+\item{Select all and copy the output.}
+\item{In Zotero, click File $\rightarrow$ Import from Clipboard.}
+\end{enumerate}
+
+Ta da! The references should all appear in Zotero. One final note on this: I recommend creating different collections for your projects, and naming them clearly. For example, I have a collection called ``Fabaceae", with two sub-collections for my manuscript references (refsMS) and database references (refsDb). This kind of organization helps later on when you want to export your .bib file.\\
+
+\section{Getting your .bib file into \LaTeX\ shape.}
+
+Now we have our references in Zotero, appropriately indexed by project. Cool. Before you export, look through your references. Here are some things that I find problematic:
+
+\begin{enumerate}
+\item{There are often a lot of meaningless details added to the ``Extra" field, which I generally delete completely.}
+\item{Check the journal entry and make sure it's upper-case, and remove all the extras (e.g., sometimes instead of simply \textit{Evolution}, the journal entry will display \textit{Evolution: International Journal of Organic Evolution}. I delete these journal sub-titles, unless they are necessary.)}
+\item{Make sure the volume and issue have imported; sometimes they do not appear.}
+\item{Check that the type of reference is correct: is it a book section listed as a conference proceeding?}
+\end{enumerate}
+
+Once you've looked over your references for these issues (and likely others!), there are some \LaTeX\ specific items that may need to be edited. These are the biggest two for folks like us.
+
+
+\begin{enumerate}
+\item[]{\textbf{Species names.}}
+\item[]{When you export your .bib file, you want to automatically take care of the \LaTeX\ code necessary for italicizing species names.} 
+\item{To do this, you can use either of the following pieces of HTML code \textit{in Zotero} before you export your file. That is, make these edits to the title entry before you export. (Both will work, it simply depends on which one is easier for you in that moment.)
+\begin{verbatim}
+<span class="nocase"><i>GENUS SPECIES</i></span>
+
+<i>GENUS <span class="nocase">SPECIES</span></i>
+\end{verbatim}
+}
+\item{If your title only lists genera or subgenera, you can use the following (or, for any other capitalized words or phrases that are italicized):
+\begin{verbatim}
+<i>GENUS</i>
+\end{verbatim}
+}
+
+\item[]{\textbf{Symbols or other \LaTeX\ code.}}
+\item[]{You may have a paper title that includes mathematical symbols, or you may want your .bib file to export a source using \LaTeX-specific syntax.}
+\item{For bold font, super- or sub-scripts, you can use the following commands:
+\begin{verbatim}
+<b>BOLD STUFF</b>
+
+<sup>SUPERSCRIPT</sup>
+
+<sub>SUBSCRIPT</sub>
+
+\end{verbatim}
+}
+\item{For mathematical symbols, use \LaTeX\ code wrapped like so:
+\begin{verbatim}
+
+<script>ANY LATEX CODE</script>
+
+e.g., <script>$\phi$</script>
+
+\end{verbatim}
+}
+
+\end{enumerate}
+
+Phew. Now we should be ready to export our .bib file! Right-click whatever collection or sub-collection you wish to export and click ``Export Collection". Choose the format ``Better Bibtex" and uncheck all the other boxes. You should only need to do this once, and this preference will stay defaulted.\\
+
+\section{Getting your references into \LaTeX.}
+
+There are two different things you may be doing with your references in \LaTeX. The first is that you are writing a manuscript with citations, and you want all of your cited literature to appear at the end of your manuscript (see ExampleFiles folder $\rightarrow$ CitationsRefs). The second is that you are simply compiling a list of references with no associated citations (see ExampleFiles folder $\rightarrow$ RefsOnlyBib).
+
+\subsection{Using \LaTeX\ for a manuscript with citations.}
+The example files included should get you started on the necessary document pre-amble and commands for citations. However, there is \textbf{a lot} out there. I've been using the \verb|apacite| package with the \verb|natbib| option, but there are tons of other packages and styles available. If you are using \verb|natbib|, many of the specific citation commands can be \href{https://gking.harvard.edu/files/natbib2.pdf}{found here.}
+
+To get started with the example files, go ahead and download the .tex file and the .bib file, making sure to keep them in the same folder. Then do the following:
+
+\begin{enumerate}
+\item{Click Typeset with LaTeX selected.}
+\item{Click Typeset with BibTeX selected.}
+\item{Click Typeset with LaTeX selected, TWICE.}
+\item{In the console, click ``Trash Aux Files" to remove extra junk you do not need.}
+\end{enumerate}
+
+What you may notice is that there is now a .bbl file included with the .tex, .bib, and .pdf files. \LaTeX\ uses this file to construct your bibliography when you click Typeset. However, if you make changes to your reference file and re-export it, you'll need to \textbf{DELETE} this file, along with the other auxiliary files, or you will get many errors and have lots of tears. Then once you've deleted everything (except for your .tex, .bib, and .pdf files) you can repeat the above steps to generate a new .bbl file.
+
+You may also notice that the citation command is using the cite key I mentioned earlier from Zotero. This key is basically how you tell \LaTeX\ which item to cite, and a long one is a big pain. I made the default for mine authoryear (\verb|[auth:lower][year]|), but make sure you get this in order \textbf{before} you begin writing. Trust me that changing all your cite keys after writing is a huge pain in the ass.
+
+\subsection{Using \LaTeX\ for a bibliography only.}
+
+The main difference here is the \verb|\nocite{*}| command. Without this, you'll get an empty file. Otherwise, follow the same procedure as above.
+
+\section{Finishing up.}
+
+I know this may seem harder than simply using Word --- it will likely be a pain to get started, but will feel easier the more you practice (like everything). As you get better, you'll be able to look up all kinds of tricks and customizations to make your documents look dope. Hopefully this helps get you started.
+
+\end{document}
+
+
+
+Zotero also keeps track of duplicate references, so check that folder periodically and merge the duplicates that appear.
+https://github.com/retorquere/zotero-better-bibtex/releases/tag/v5.2.20
+
+\href{http://www.sharelatex.com}{Something Linky}
+
+https://pages.uoregon.edu/koch/texshop/obtaining.html
+\href{URL}{DESCRIPTION}
