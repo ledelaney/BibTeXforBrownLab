@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage[bibnewpage, natbibapa]{apacite} 
+\usepackage[hyphens]{url}
+
+\usepackage{setspace}
+\doublespacing
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L,C]{}
+\fancyhead[R]{\textsc{L. E. Delaney} \hspace{3mm} \textit{My Important Bibliography}}
+\fancyfoot[L]{}
+    \fancyfoot[R]{\thepage}
+\fancyfoot[C]{}
+
+
+\begin{document}
+
+\bibliographystyle{apacite}
+\bibliography{refsMIB}
+
+\nocite{*} 
+
+\end{document}

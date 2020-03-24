@@ -1,0 +1,24 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage[bibnewpage, natbibapa]{apacite} 
+\usepackage[hyphens]{url}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L,C]{}
+\fancyhead[R]{\textsc{L. E. Delaney} \hspace{3mm} \textit{My Important Manuscript}}
+\fancyfoot[L]{}
+    \fancyfoot[R]{\thepage}
+\fancyfoot[C]{}
+
+
+\begin{document}
+
+This is an important manuscript \citep{stebbins1957}. What makes it so important? Lots of things \citep[e.g.,][]{bruneau1988, kenrick1989}! It is like \citet{dobzhansky1973} said: nothing in biology makes sense except in the light of my manuscript.
+
+\bibliographystyle{apacite}
+\bibliography{refsMMS} 
+
+\end{document}
