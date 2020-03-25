@@ -76,7 +76,6 @@ Now we have our references in Zotero, appropriately indexed by project. Cool. Be
 
 Once you've looked over your references for these issues (and likely others!), there are some \LaTeX\ specific items that may need to be edited. These are the biggest two for folks like us:
 
-
 \begin{enumerate}
 \item[]{\textbf{Species names.}}
 \item[]{When you export your .bib file, you want to automatically take care of the \LaTeX\ code necessary for italicizing species names.} 
@@ -121,13 +120,14 @@ Lastly, Zotero also keeps track of duplicate references, so check that folder (i
 
 \section{Getting your references into \LaTeX.}
 
-There are two different things you may be doing with your references in \LaTeX. The first is that you are writing a manuscript with citations, and you want all of your cited literature to appear at the end of your manuscript (see ExampleFiles folder $\rightarrow$ CitationsRefs linked \href{https://github.com/ledelaney/BibTeXforBrownLab/tree/master/ExampleFiles/CitationsRefs}{here.}). The second is that you are simply compiling a list of references with no associated citations (see ExampleFiles folder $\rightarrow$ RefsOnlyBib linked \href{https://github.com/ledelaney/BibTeXforBrownLab/tree/master/ExampleFiles/RefsOnlyBib}{here.}).
+There are two different things you may be doing with your references in \LaTeX. The first is that you are writing a manuscript with citations, and you want all of your cited literature to appear at the end of your manuscript (see ExampleFiles folder $\rightarrow$ CitationsRefs linked \href{https://github.com/ledelaney/BibTeXforBrownLab/tree/master/ExampleFiles/CitationsRefs}{here.}). The second is that you are simply compiling a list of references with no associated citations (see ExampleFiles folder $\rightarrow$ RefsOnlyBib linked \href{https://github.com/ledelaney/BibTeXforBrownLab/tree/master/ExampleFiles/RefsOnlyBib}{here.}). (I recommend downloading the folder because you'll need to keep the TeX files and bib files in the same folder for it to compile.)
 
 \subsection{Using \LaTeX\ for a manuscript with citations.}
 The example files included should get you started on the necessary document pre-amble and commands for citations. However, there is \textbf{a lot} more out there. I've been using the \verb|apacite| package with the \verb|natbib| option, but there are tons of other packages and styles available. If you are using \verb|natbib|, many of the specific citation commands can be \href{https://gking.harvard.edu/files/natbib2.pdf}{found here.}
 
-To get started with the example files, go ahead and download both the .tex file and the .bib file, making sure to keep them in the same folder. Open up the .tex file and take a look at the commands and what they produce in the final PDF file.\\
+To get started with the example files, go ahead and download both the .tex file and the .bib file, making sure to keep them in the same folder. Open up the .tex file and take a look at the commands and what they produce in the final PDF file.
 
+\pagebreak
 Then do the following:
 
 \begin{enumerate}
@@ -143,7 +143,7 @@ You may also notice that the citation command is using the cite key I mentioned 
 
 \subsection{Using \LaTeX\ for a bibliography only.}
 
-The main difference here is the \verb|\nocite{*}| command. Without this, you'll get an empty file. Otherwise, follow the same procedure as above. (One exception: in step $(4)$ you do not need to Typeset twice, only once.)
+The main difference here is the \verb|\nocite{*}| command. Without this, you'll get an empty file. Otherwise, follow the same procedure as above. (One exception: in step $(3)$ you do not need to Typeset twice, only once.)
 
 \section{Finishing up.}
 
